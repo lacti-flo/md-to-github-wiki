@@ -58,6 +58,8 @@ function main(inputDir, outputDir) {
   if (!checkValidDirectory(inputDir) || !checkValidDirectory(outputDir)) {
     throw new Error(`${process.argv[0]} ${process.argv[1]} repo-dir wiki-dir`);
   }
+  inputDir = fs.realpathSync(inputDir);
+  outputDir = fs.realpathSync(outputDir);
 
   const markdownFiles = findMarkdown(inputDir);
   const fromTos = markdownFiles.map((each) => {
